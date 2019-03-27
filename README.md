@@ -4,19 +4,18 @@ L'image est basée sur Centos 7 et expose les variables d'environnement suivant:
 
 * _ODOO_RPM_URL_: une url valide vers le RPM d'Odoo a installer
 * _ODOO_SRC_URL_: une url valide vers le source (tar.gz) d'Odoo à installer
-* _PGDATA_: chemin vers le répertoire `data` de postgresql
-
-Les paramètres par défaut sont ceux utilisé dans l'environement de test de TWD.
+* _PGDATA_: chemin vers le répertoire `data` de postgresql. Pointe vers `/usr/lib/pgsql/data` par défaut
 
 L'image principale (_Dockerfile_) se repose sur l'image intermédiaire (_Dockerfile.centos7.systemd_).
 Cette dernière désactive systemd qui peut poser des problèmes de sécurité lorsqu'utilisé depuis un container.
 
-L'image principale se lance ainsi:
+Exemple d'utilisation de l'image:
 
 ```bash
-docker run --name odoo8-qa -d \
-           -p 8069:8069 -p 5432:5432 \
-           paraita/odoo8-postgresql-qa
+docker run --name odoo8-qa -d -p 8069:8069 -p 5432:5432 \
+    -e ODOO_RPM_URL="http://cdn.tahiti-web-management.com/odoo_8.0.20171001.noarch.rpm" \
+    -e ODOO_SRC_URL="http://cdn.tahiti-web-management.com/odoo_8.0.20171001.tar.gz" \
+    paraita/odoo8-postgresql-qa
 ```
 
 ## Postgresql
@@ -46,7 +45,8 @@ Le répertoire d'addons d'Odoo est accessible sur `/odoo/addons`.
 Pour démarrer Odoo:
 
 ```bash
-su odoo -c "openerp-server --log-level debug"
+su odoo -c "openerp-server -c /odoo/conf/openerp-server \
+                           --log-level debug"
 ```
 
 
