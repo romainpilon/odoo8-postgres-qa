@@ -1,4 +1,4 @@
-# odoo8-postgresl-qa
+# odoo8-postgres
 
 L'image est basée sur Centos 7 et expose les variables d'environnement suivant:
 
@@ -15,7 +15,7 @@ Exemple d'utilisation de l'image:
 docker run --name odoo8-qa -d -p 8069:8069 -p 5432:5432 \
     -e ODOO_RPM_URL="http://cdn.tahiti-web-management.com/odoo_8.0.20171001.noarch.rpm" \
     -e ODOO_SRC_URL="http://cdn.tahiti-web-management.com/odoo_8.0.20171001.tar.gz" \
-    paraita/odoo8-postgresql-qa
+    tahitiwebdesign/odoo8-postgres
 ```
 
 ## Postgresql

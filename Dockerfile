@@ -1,5 +1,5 @@
 FROM paraita/centos7
-LABEL maintainer="paraita.wohler@tahiti-web-management.com"
+LABEL maintainer='romain.p@tahitiwebdesign.com'
 
 ENV container docker
 ENV ODOO_RPM_URL https://nightly.odoo.com/8.0/nightly/rpm/odoo_8.0.20171001.noarch.rpm
@@ -9,8 +9,7 @@ ENV PGDATA=$PG_PATH/data
 
 # Bootstrap de l'image centos + installation postgresql
 RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs && \
-	yum clean all && yum -y update && yum -y install epel-release && \
-	yum -y update && yum -y install wkhtmltopdf python-gevent \
+	yum clean all && yum -y update && yum -y install wkhtmltopdf python-gevent \
 	postgresql-server postgresql-contrib tree less vim \
 # dépendances odoo source
 	python-pip python-devel git libjpeg-devel libtiff-devel gcc \
