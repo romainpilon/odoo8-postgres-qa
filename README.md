@@ -51,3 +51,4 @@ su odoo -c "openerp-server -c /odoo/conf/openerp-server \
 
 
 
+"# odoo8-postgres" 
